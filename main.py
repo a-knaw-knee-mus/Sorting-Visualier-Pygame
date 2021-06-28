@@ -17,31 +17,7 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Sorting Visualizer')
 clock = pygame.time.Clock()
 
-moves = [pygame.K_b, pygame.K_s, pygame.K_i, pygame.K_m]
-
-
-def merge(a, b):
-    c = []
-    indexA, indexB = 0, 0
-    while indexA < len(a) and indexB < len(b):
-        if a[indexA] < b[indexB]:
-            c.append(a[indexA])
-            indexA += 1
-        else:
-            c.append(b[indexB])
-            indexB += 1
-    if indexA == len(a):
-        c.extend(b[indexB:])
-    else:
-        c.extend(a[indexA:])
-    return c
-
-
-def merge_sort(a):
-    if len(a) <= 1:
-        return a
-    left, right = merge_sort(a[:len(a)//2]), merge_sort(a[len(a)//2:])
-    return merge(left, right)
+moves = [pygame.K_b, pygame.K_s, pygame.K_i]
 
 
 class Board:
@@ -166,10 +142,6 @@ def main():
                         board.selection_sort()
                     elif event.key == pygame.K_i:
                         board.insertion_sort()
-                    elif event.key == pygame.K_m:
-                        board.vals = merge_sort(board.vals)
-                        board.display()
-
                     mode = True
 
 
